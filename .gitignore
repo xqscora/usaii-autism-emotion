@@ -1,0 +1,8 @@
+# datasets are large / licensed — never commit them
+datasets/
+
+# python
+__pycache__/
+*.pyc
+.cache/
+*.zip
