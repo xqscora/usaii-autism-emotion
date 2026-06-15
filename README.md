@@ -1,5 +1,9 @@
 # Autism Emotion Recognition — USAII Global AI Hackathon 2026
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/xqscora/usaii-autism-emotion/blob/master/demo_colab.ipynb)
+
+**▶️ Live demo, no install — click the badge above, run the cells top to bottom, speak into your mic, and it reads the emotion in your voice.**
+
 > Cora Zeng × Mujahid · voice-first emotion recognition for autistic children, with face as calibration.
 > 建于 2026-06-15。这是项目蓝图 + 代码。训练在 **Kaggle GPU**（本地 Intel Arc 跑不动 wav2vec2 微调）。
 
