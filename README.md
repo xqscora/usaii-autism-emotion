@@ -5,7 +5,23 @@
 **▶️ Live demo, no install — click the badge above, run the cells top to bottom, speak into your mic, and it reads the emotion in your voice.**
 
 > Cora Zeng × Mujahid · voice-first emotion recognition for autistic children, with face as calibration.
-> 建于 2026-06-15。这是项目蓝图 + 代码。训练在 **Kaggle GPU**（本地 Intel Arc 跑不动 wav2vec2 微调）。
+> 建于 2026-06-15。项目蓝图 + 代码 + **已训好的 baseline 模型**。
+
+---
+
+## ✅ 现在能跑什么（真实结果）
+
+两个**从头训**的语音情绪模型（RAVDESS，8 类，**演员独立 / speaker-independent** 测试，随机 = 12.5%）：
+
+| 模型 | 特征 | 演员独立准确率 |
+|---|---|---|
+| baseline | librosa 声学特征 + RandomForest | 37% |
+| **升级版** | **wav2vec2 (superb) embedding + LogReg** | **64%** |
+
+- 跑 demo：`python code/demo_emotion.py [audio.wav]` → 语音进、情绪出（不确定时弃权）。本地实测：朗读样本 → `calm` 0.97。
+- 模型文件：`ravdess_w2v_ser_model.joblib`（69KB，已含在仓库）。
+- 🧊 **诚实**：这是**通用语音情绪** baseline（用 NT 成人语音 RAVDESS 训的）。把它做对**自闭症儿童**是下一步（ASDSpeech 域适配 + per-wearer 校准），不是现在就声称解决了。
+- wav2vec2 **端到端微调**（而非 embedding + LogReg）仍建议上 Kaggle GPU。
 
 ---
 
@@ -22,7 +38,7 @@
 |---|---|---|---|---|
 | **ASDSpeech** | 197 自闭症儿童语音的 49 维声学特征（123 录音 .mat） | ❌ 标签是 ADOS 严重度 | ✅ 已下 `datasets/ASDSpeech/` | **熟悉自闭症声音分布**（SSL/迁移的目标域） |
 | **FER-Autism** | 自闭症儿童面部，6 类情绪，1200+220 图 | ✅ 6 类 | ⏳ 待手动下（Mendeley 要网页点 Download All）| **面部校准**信号 |
-| **RAVDESS** | 通用成人语音，8 类情绪，有音频 | ✅ 8 类 | ⏳ 待下（Zenodo）| 训**情绪分类头**的标注源（NT） |
+| **RAVDESS** | 通用成人语音，8 类情绪，有音频 | ✅ 8 类 | ✅ 已下 + **已训 64%** | 训**情绪分类头**的标注源（NT） |
 | **CALMED / CoSAm** | 自闭症多模态/语音情绪 | ✅ | 📧 已申请作者（等回复，大概率慢）| 理想的自闭症情绪标注，若拿到则金 |
 
 > 关键：能直接训"情绪"的标签来自 **FER-Autism(面部) + RAVDESS(NT语音)**；自闭症**语音**情绪标注是 gap。ASDSpeech 给的是**无标签的自闭症声音**（正好做自监督/域适配）。

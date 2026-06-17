@@ -6,3 +6,8 @@ __pycache__/
 *.pyc
 .cache/
 *.zip
+
+# big model artifacts (the 69KB w2v model IS committed; these two are too big)
+ravdess_ser_model.joblib
+*.npz
+*.log
