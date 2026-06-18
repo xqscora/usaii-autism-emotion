@@ -17,6 +17,9 @@
 |---|---|---|
 | baseline | librosa 声学特征 + RandomForest | 37% |
 | **升级版** | **wav2vec2 (superb) embedding + LogReg** | **64%** |
+| **+ 个性化** | 每人校准 **3 样本/情绪** | **75% (+10pt)** |
+
+**个性化才是核心**（你的"给每个孩子建懂他的模型"）：给某说话人几个样本后对他更准——而且**通用模型读得最差的人，个性化救得最多**（最难的 speaker 56%→75%，**+19pt**）。这正是自闭症的关键：孩子表达非典型、通用模型读不懂，个性化最有用。跑：`python code/personalize_demo.py`。
 
 - 跑 demo：`python code/demo_emotion.py [audio.wav]` → 语音进、情绪出（不确定时弃权）。本地实测：朗读样本 → `calm` 0.97。
 - 模型文件：`ravdess_w2v_ser_model.joblib`（69KB，已含在仓库）。
