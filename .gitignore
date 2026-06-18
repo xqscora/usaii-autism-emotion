@@ -11,3 +11,6 @@ __pycache__/
 ravdess_ser_model.joblib
 *.npz
 *.log
+recording/audio/
+recording/cards/
+*.mp4
