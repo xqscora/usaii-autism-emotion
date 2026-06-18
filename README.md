@@ -21,6 +21,8 @@
 
 **个性化才是核心**（你的"给每个孩子建懂他的模型"）：给某说话人几个样本后对他更准——而且**通用模型读得最差的人，个性化救得最多**（最难的 speaker 56%→75%，**+19pt**）。这正是自闭症的关键：孩子表达非典型、通用模型读不懂，个性化最有用。跑：`python code/personalize_demo.py`。
 
+**校准曲线**（固定 eval，几个样本就够）：`K=0 → 66.7% · K=1 → 70.8% · K=2 → 73.6% · K=3 → 77.1%` —— 从 1 个样本就开始帮，单调递增。跑：`python code/personalize_sweep.py`。
+
 - 跑 demo：`python code/demo_emotion.py [audio.wav]` → 语音进、情绪出（不确定时弃权）。本地实测：朗读样本 → `calm` 0.97。
 - 模型文件：`ravdess_w2v_ser_model.joblib`（69KB，已含在仓库）。
 - 🧊 **诚实**：这是**通用语音情绪** baseline（用 NT 成人语音 RAVDESS 训的）。把它做对**自闭症儿童**是下一步（ASDSpeech 域适配 + per-wearer 校准），不是现在就声称解决了。
