@@ -11,6 +11,8 @@ __pycache__/
 ravdess_ser_model.joblib
 *.npz
 *.log
+fer_face_model.pt
+_test_clip.mp4
 recording/audio/
 recording/cards/
 *.mp4

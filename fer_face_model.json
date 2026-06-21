@@ -1,0 +1,16 @@
+{
+  "classes": [
+    "angry",
+    "disgust",
+    "fear",
+    "happy",
+    "neutral",
+    "sad",
+    "surprise",
+    "test",
+    "train",
+    "validation"
+  ],
+  "val_acc": 0.3,
+  "weights": "D:\\me\\\u5176\u4ed6\\\u6027\u683c\\usaii-autism-emotion\\fer_face_model.pt"
+}

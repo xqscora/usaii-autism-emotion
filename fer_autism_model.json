@@ -1,0 +1,14 @@
+{
+  "classes": [
+    "anger",
+    "fear",
+    "joy",
+    "natural",
+    "sadness",
+    "surprise"
+  ],
+  "test_acc": 0.6637,
+  "backbone": "resnet18",
+  "img_size": 96,
+  "weights": "D:\\me\\\u5176\u4ed6\\\u6027\u683c\\usaii-autism-emotion\\fer_autism_model.pt"
+}

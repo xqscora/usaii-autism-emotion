@@ -24,6 +24,14 @@
 **校准曲线**（固定 eval，几个样本就够）：`K=0 → 66.7% · K=1 → 70.8% · K=2 → 73.6% · K=3 → 77.1%` —— 从 1 个样本就开始帮，单调递增。跑：`python code/personalize_sweep.py`。
 
 - 跑 demo：`python code/demo_emotion.py [audio.wav]` → 语音进、情绪出（不确定时弃权）。本地实测：朗读样本 → `calm` 0.97。
+- **Face 数据/训练**（见 `docs/FER_DATASETS.md`）：
+  - `pip install -r requirements-face.txt`
+  - `python code/download_fer_datasets.py --dataset fer2013_hf`（HF 全自动）
+  - Mendeley [FER-Autism](https://data.mendeley.com/datasets/b33pf78h62) Download All → `--dataset fer_autism --zip ...`
+  - `python code/face_capture.py --person-id child_01`（长期采集，按人存盘）
+  - `python code/train_fer.py --data datasets/fer2013_hf`
+  - `python code/train_fer.py --data "datasets/FER-Autism/Autism emotion recogition dataset" --out fer_autism_model.pt`
+  - `python code/demo_face_emotion.py --camera`
 - 模型文件：`ravdess_w2v_ser_model.joblib`（69KB，已含在仓库）。
 - 🧊 **诚实**：这是**通用语音情绪** baseline（用 NT 成人语音 RAVDESS 训的）。把它做对**自闭症儿童**是下一步（ASDSpeech 域适配 + per-wearer 校准），不是现在就声称解决了。
 - wav2vec2 **端到端微调**（而非 embedding + LogReg）仍建议上 Kaggle GPU。
@@ -42,7 +50,8 @@
 | 数据集 | 内容 | 情绪标签? | 状态 | 用途 |
 |---|---|---|---|---|
 | **ASDSpeech** | 197 自闭症儿童语音的 49 维声学特征（123 录音 .mat） | ❌ 标签是 ADOS 严重度 | ✅ 已下 `datasets/ASDSpeech/` | **熟悉自闭症声音分布**（SSL/迁移的目标域） |
-| **FER-Autism** | 自闭症儿童面部，6 类情绪，1200+220 图 | ✅ 6 类 | ⏳ 待手动下（Mendeley 要网页点 Download All）| **面部校准**信号 |
+| **FER-Autism face** | ResNet18 + augment, official test split | **66.4%** (6 类，随机 17%；Prince baseline face ~66%) |
+| **FER2013 (HF)** | 通用 7 类，~35k 脸 | ✅ 7 类 | ✅ `python code/download_fer_datasets.py --dataset fer2013_hf` | 训 baseline CNN |
 | **RAVDESS** | 通用成人语音，8 类情绪，有音频 | ✅ 8 类 | ✅ 已下 + **已训 64%** | 训**情绪分类头**的标注源（NT） |
 | **CALMED / CoSAm** | 自闭症多模态/语音情绪 | ✅ | 📧 已申请作者（等回复，大概率慢）| 理想的自闭症情绪标注，若拿到则金 |
 
